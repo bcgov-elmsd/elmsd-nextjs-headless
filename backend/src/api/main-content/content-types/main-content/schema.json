@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "main_contents",
+  "info": {
+    "singularName": "main-content",
+    "pluralName": "main-contents",
+    "displayName": "Content1"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "Title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

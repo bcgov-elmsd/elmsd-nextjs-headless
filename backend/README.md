@@ -55,3 +55,8 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+## Problems and solution
+
+### GraphQL installation
+Link to [solution] (https://medium.com/@kittycat.tech/graphql-api-using-strapi-and-postman-debugging-and-how-to-fix-errors-bb94d6ffb459) 
