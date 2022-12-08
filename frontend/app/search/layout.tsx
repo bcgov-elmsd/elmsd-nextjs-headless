@@ -1,4 +1,4 @@
-import ToDoList from "./ToDoList";
+import Search from "./Search";
 
 export default function RootLayout({
   children,
@@ -6,13 +6,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex">
+    <main className="flex space-x-4 divide-x-2 p-5">
       <div>
+        <h1>Search</h1>
+      </div>
+      <div className=" flex-1 pl-5">
         {/* lay out presents what will be on the page with the other children, like react router main router */}
         {/* @ts-ignore */}
-        <ToDoList />
+        <Search />
+        <div>{children}</div>
       </div>
-      <div className="flex-l">{children}</div>
     </main>
-  )
+  );
 }
