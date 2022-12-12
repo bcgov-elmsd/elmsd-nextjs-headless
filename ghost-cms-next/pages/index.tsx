@@ -1,52 +1,18 @@
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import React from 'react';
 
-const CONTENT_API_KEY = process.env.CONTENT_API_KEY
-const API_URL = process.env.API_URL
-
-
-type Post = {
-  title: string,
-  slug: string,
-  excerpt: string
-}
-
-async function getPosts() {
-  const res = await fetch(
-    `${API_URL}/ghost/api/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,excerpt`
-  ).then((res) => res.json())
-  console.log(res)
-  const posts = res.posts
-  
-  return posts
-}
-
-export async function getStaticProps({ params }:any) {
-  const res = await getPosts()
-
-  const posts = res
-  //nextjs will try to run the getstaticprops at most 1 request every 10 seconds
-  return {
-    props: { posts },
-    revalidate: 10
-  }
-}
-
-
-const Home: React.FC<{posts:Post[]}> = (props) => {
+const Home: React.FC<{}> = () => {
   return (
-    <div className=" container text-center">
-     <h1>
-      Hello this is a content test
-     </h1>
-     <ul className='list-disc'>
-        {props.posts.map((post,index) => (
-          <li key={index}>
-            <Link href="/post/[slug]" as={`/post/${post.slug}`}>{post.title}</Link>
-          </li>
-        ))}
-     </ul>
-    </div>
+    <main className="px-8 py-4 bg-white">
+      <h1 className="text-3xl font-bold text-indigo-700">
+        This is a page for Ghost CMS test APIs
+      </h1>
+      <p className="text-gray-700 mt-4">
+        Ghost CMS is a popular open-source content management system built with Node.js. It is known for its clean and modern design, as well as its powerful API.
+      </p>
+      <p className="text-gray-700 mt-4">
+        This page was built using Next.js, a React-based framework for building server-rendered or statically-exported websites. Next.js makes it easy to create performant and scalable web applications.
+      </p>
+    </main>
   )
 }
 

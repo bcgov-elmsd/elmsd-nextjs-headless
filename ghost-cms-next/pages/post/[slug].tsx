@@ -1,23 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {getPostBySlug} from "../lib/ghost";
 
-const CONTENT_API_KEY = process.env.CONTENT_API_KEY
-const API_URL = process.env.API_URL
+
 
 type Post = {
   title: string,
   slug: string,
   html: string
-}
-
-async function getPostBySlug(slug: string) {
-  const res = await fetch(
-    `${API_URL}/ghost/api/content/posts/slug/${slug}?key=${CONTENT_API_KEY}&fields=title,slug,html`
-  ).then((res) => res.json());
-
-  const posts = res.posts;
-    console.log(posts[0])
-  return posts[0];
 }
 
 export const getStaticProps = async ({ params }: any) => {
