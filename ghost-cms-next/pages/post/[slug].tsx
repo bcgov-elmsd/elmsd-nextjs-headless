@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPostBySlug } from "../lib/ghost";
+import sanitizeHtml from 'sanitize-html';
 
 type Post = {
   title: string;
@@ -33,14 +34,15 @@ const Post: React.FC<{ post: Post }> = (props) => {
   const router = useRouter();
   const { post } = props;
 
+
   //server is executing getStaticProps and client is waiting for that to finish
   if (router.isFallback) {
     return <h1>Loading...</h1>;
   }
-
+  const sanitizedHtml = sanitizeHtml(post.html);
   console.log(props);
   return (
-    <div className=" bg-slate-300 h-full">
+    <div className=" bg-slate-300 min-h-screen">
       <article className="max-w-7xl w-4/5 mx-auto bg-white p-7">
         <header className="flex flex-col">
           <Link href="/posts" className="text-center" legacyBehavior>
@@ -51,7 +53,7 @@ const Post: React.FC<{ post: Post }> = (props) => {
           <h3 className="font-bold text-lg mb-2">{post.title}</h3>
           {/* reason why dangerously set html is because it will be used by attackewrs but since
       it is owned by us on the Ghost backend, it should be fine. */}
-          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.html }}></div>
+          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>
         </header>
       </article>
     </div>

@@ -42,7 +42,7 @@ export async function getPosts() {
   return posts;
 }
 
-export async function getMemberOnlyPost() {
+export async function getMemberOnlyPosts() {
   const api = new GhostAdminAPI({
     url: API_URL,
     key: ADMIN_API_KEY,
