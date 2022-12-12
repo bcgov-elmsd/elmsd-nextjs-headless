@@ -41,7 +41,7 @@ const Post: React.FC<{ post: Post }> = (props) => {
   console.log(props);
   return (
     <div className=" bg-slate-300 h-full">
-      <article className="mb-4 max-w-7xl w-4/5 mx-auto bg-slate-100 p-7">
+      <article className="max-w-7xl w-4/5 mx-auto bg-white p-7">
         <header className="flex flex-col">
           <Link href="/posts" className="text-center" legacyBehavior>
             <button className=" w-28 cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -51,7 +51,7 @@ const Post: React.FC<{ post: Post }> = (props) => {
           <h3 className="font-bold text-lg mb-2">{post.title}</h3>
           {/* reason why dangerously set html is because it will be used by attackewrs but since
       it is owned by us on the Ghost backend, it should be fine. */}
-          <div className="prose" dangerouslySetInnerHTML={{ __html: post.html }}></div>
+          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.html }}></div>
         </header>
       </article>
     </div>
