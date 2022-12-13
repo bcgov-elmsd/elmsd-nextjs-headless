@@ -1,10 +1,12 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import Layout from '../components/layout'
+import { SessionProvider } from "next-auth/react"
+import Header from '../components/Header'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps:{ session, ...pageProps } }: AppProps) {
   return (
-  <Layout>
-    <Component {...pageProps} />
-  </Layout>)
-}
+    <SessionProvider session={pageProps.session} refetchInterval={0}>
+      <Header/>
+      <Component {...pageProps} />
+    </SessionProvider>
+)}
