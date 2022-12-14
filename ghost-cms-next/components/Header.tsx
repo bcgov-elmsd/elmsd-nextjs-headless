@@ -43,19 +43,26 @@ const Header = () => {
             )}
             {session && (
               
-              <li className="ml-6">
-                
+              <><li className="ml-6">
+
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     signOut();
-                  }}
+                  } }
                   className="px-2 py-1 text-white bg-indigo-800 hover:bg-indigo-600 rounded-sm"
                 >
-                  
+
                   Sign Out
                 </button>
-              </li>
+              </li><li  className="ml-6">
+                  <Link
+                    href="/member"
+                    className="px-2 py-1 text-white bg-indigo-800 hover:bg-indigo-600 rounded-sm"
+                  >
+                    Member-only Posts
+                  </Link>
+                </li></>
             )}
           </ul>
         </nav>
