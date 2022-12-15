@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { getPostBySlug } from "../../lib/ghost";
+import { getMemberOnlyPostBySlug} from "../../lib/ghost";
 import sanitizeHtml from 'sanitize-html';
 
 type Post = {
@@ -11,7 +11,7 @@ type Post = {
 
 export const getStaticProps = async ({ params }: any) => {
 
-  const post = await getPostBySlug(params.slug);
+  const post = await getMemberOnlyPostBySlug(params.slug);
 
   return {
     props: { post },
@@ -48,13 +48,13 @@ const Post: React.FC<{ post: Post }> = (props) => {
     <div className=" bg-slate-300 min-h-screen">
       <article className="max-w-7xl w-4/5 mx-auto bg-white p-7">
         <header className="flex flex-col">
-          <Link href="/posts" className="text-center" legacyBehavior>
+          <Link href="/member" className="text-center" legacyBehavior>
             <button className=" w-28 cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Go back
             </button>
           </Link>
           <h3 className="font-bold text-lg mb-2">{post.title}</h3>
-            {/* reason why dangerously set html is because it will be used by attackewrs but since
+          {/* reason why dangerously set html is because it will be used by attackewrs but since
       it is owned by us on the Ghost backend, it should be fine. */}
           <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>
         </header>

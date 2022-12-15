@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getMemberOnlyPosts } from "./lib/ghost";
+import { getMemberOnlyPosts } from "../../lib/ghost";
 import Image from "next/image";
 
 type Post = {
@@ -13,6 +13,7 @@ export async function getStaticProps({ params }: any) {
   const res = await getMemberOnlyPosts();
 
   const posts = res;
+  console.log(posts);
   //nextjs will try to run the getstaticprops at most 1 request every 10 seconds
   return {
     props: { posts },
@@ -36,8 +37,8 @@ const Member: React.FC<{ posts: Post[] }> = (props) => {
           {props.posts.map((post, index) => (
             <Link
               key={index}
-              href="/post/[slug]"
-              as={`/post/${post.slug}`}
+              href="/member/[slug]"
+              as={`/member/${post.slug}`}
               legacyBehavior
             >
               <li className="mb-4 border-indigo-700 border-2 shadow-md cursor-pointer rounded-t-lg ">

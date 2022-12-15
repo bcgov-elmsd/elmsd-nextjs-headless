@@ -46,7 +46,7 @@ export async function getMemberOnlyPosts() {
   const api = new GhostAdminAPI({
     url: API_URL,
     key: ADMIN_API_KEY,
-    version: "v5.0",
+    version: "v3.0",
   });
 
   const posts = await api.posts
@@ -59,4 +59,23 @@ export async function getMemberOnlyPosts() {
     });
 
   return posts;
+}
+
+export async function getMemberOnlyPostBySlug(slug: string) {
+  const api = new GhostAdminAPI({
+    url: API_URL,
+    key: ADMIN_API_KEY,
+    version: "v3.0",
+  });
+  console.log(slug);
+  const post = await api.posts
+    .read({
+      slug: slug,
+      formats: 'html'
+    })
+    .catch((err: any) => {
+      console.error(err);
+    });
+
+  return post;
 }

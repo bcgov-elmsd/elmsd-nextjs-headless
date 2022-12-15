@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPosts } from "./lib/ghost";
+import { getPosts } from "../lib/ghost";
 import Image from "next/image";
 
 type Post = {
