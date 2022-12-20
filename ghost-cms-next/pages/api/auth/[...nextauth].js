@@ -13,8 +13,11 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, profile }) {
       // Persist the OAuth access_token to the token right after signin
-      if (profile) {
+      if (profile && profile.hasOwnProperty('client_roles')) {
+        console.log(profile)
         token.client_roles = profile.client_roles
+      } else if (profile) {
+        token.client_roles = []
       }
       return token
     },

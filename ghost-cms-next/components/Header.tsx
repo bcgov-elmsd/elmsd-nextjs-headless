@@ -55,14 +55,18 @@ const Header = () => {
 
                   Sign Out
                 </button>
-              </li><li  className="ml-6">
+              </li>
+              {/* @ts-ignore */}
+              {session.user?.client_roles?.includes('member') && (<li  className="ml-6">
                   <Link
                     href="/member"
                     className="px-2 py-1 text-white bg-indigo-800 hover:bg-indigo-600 rounded-sm"
                   >
                     Member-only Posts
                   </Link>
-                </li></>
+                </li>
+                )}  
+              </>
             )}
           </ul>
         </nav>
